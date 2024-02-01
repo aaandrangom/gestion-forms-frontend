@@ -1,0 +1,29 @@
+<div
+  class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light"
+>
+  <div class="card shadow" style="max-width: 400px; width: 100%">
+    <div class="card-body">
+      <div class="tabs">
+        <div class="tab active">Verificación</div>
+      </div>
+      <form [formGroup]="verificationForm" (ngSubmit)="onSubmit()" class="mt-4">
+        <div class="form-group">
+          <input
+            type="text"
+            id="verificationcode"
+            formControlName="verificationcode"
+            class="form-control"
+            placeholder="Ingrese el código de verificación"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="verificationForm.invalid"
+        >
+          Verificar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

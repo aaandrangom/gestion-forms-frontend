@@ -1,0 +1,57 @@
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0;
+}
+
+.card {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center; /* Ajuste para centrar el tab de Iniciar Sesión */
+  margin-bottom: 20px;
+}
+
+.tab {
+  cursor: pointer;
+  color: #9e9e9e;
+  padding: 10px 20px;
+}
+
+.tab.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.btn-primary.w-100 {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin-top: 20px;
+}
+
+.text-center {
+  margin-top: 15px;
+}
+
+.text-center a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
