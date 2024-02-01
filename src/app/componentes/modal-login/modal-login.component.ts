@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-modal-login',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Mensaje de registro</h4>
+      <h4 class="modal-title">Iniciar Sesión</h4>
       <button
         type="button"
         class="close"

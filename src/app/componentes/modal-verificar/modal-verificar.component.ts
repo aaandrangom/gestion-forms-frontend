@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-modal-verificar',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Códgio de verificación</h4>
+      <h4 class="modal-title">Código de verificación</h4>
       <button
         type="button"
         class="close"
