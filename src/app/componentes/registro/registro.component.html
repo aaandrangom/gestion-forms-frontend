@@ -1,71 +1,175 @@
-<div class="registro-container">
-  <div class="registro-card">
-    <div class="tabs">
-      <div class="tab active">Registro</div>
-    </div>
-    <form
-      [formGroup]="registroForm"
-      (ngSubmit)="onSubmit()"
-      class="registro-form"
-    >
-      <div class="form-group">
+<div class="flex items-center justify-center min-h-screen bg-brand-light">
+  <div class="w-full max-w-sm px-6 py-8 bg-white rounded-2xl shadow-lg">
+    <h2 class="text-center text-2xl text-brand-gray font-bold mb-8">
+      Registro
+    </h2>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm0 2c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0 2c2.21 0 4 1.79 4 4H8c0-2.21 1.79-4 4-4z"
+            />
+          </svg>
+        </span>
         <input
           type="text"
           id="cedula"
           formControlName="cedula"
+          class="w-full p-2 rounded-r-md"
           placeholder="Cédula"
         />
       </div>
-      <div class="form-group">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M6 13V5a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v6a2 2 0 01-2 2H6z"
+            />
+          </svg>
+        </span>
         <input
           type="text"
           id="nombres"
           formControlName="nombres"
+          class="w-full p-2 rounded-r-md"
           placeholder="Nombres"
         />
       </div>
-      <div class="form-group">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M6 13V5a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v6a2 2 0 01-2 2H6z"
+            />
+          </svg>
+        </span>
         <input
           type="text"
           id="apellidos"
           formControlName="apellidos"
+          class="w-full p-2 rounded-r-md"
           placeholder="Apellidos"
         />
       </div>
-      <div class="form-group">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 8a6 6 0 11-12 0 6 6 0 0112 0zM2 13a9 9 0 1118 0H2z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </span>
         <input
           type="text"
           id="username"
           formControlName="username"
+          class="w-full p-2 rounded-r-md"
           placeholder="Nombre de Usuario"
         />
       </div>
-      <div class="form-group">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M16 11V7a4 4 0 00-8 0v4m4 5a4 4 0 100-8 4 4 0 000 8z"
+            />
+          </svg>
+        </span>
         <input
           type="password"
           id="password"
           formControlName="password"
+          class="w-full p-2 rounded-r-md"
           placeholder="Contraseña"
         />
       </div>
-      <div class="form-group">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M16 12a4 4 0 11-8 0 4 4 0 018 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9h4"
+            />
+          </svg>
+        </span>
         <input
           type="email"
           id="email"
           formControlName="email"
+          class="w-full p-2 rounded-r-md"
           placeholder="Correo Electrónico"
         />
       </div>
       <button
         type="submit"
+        class="w-full bg-brand-blue text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50"
         [disabled]="registroForm.invalid"
-        class="registro-submit-btn"
       >
         Registrarse
       </button>
-      <div class="login-link text-center">
-        <a href="/login">¿Ya tienes una cuenta? Inicia sesión</a>
-      </div>
     </form>
+    <div class="mt-6 text-center">
+      <a href="/login" class="text-brand-blue hover:text-blue-700">
+        ¿Ya tienes una cuenta? Inicia sesión
+      </a>
+    </div>
   </div>
 </div>

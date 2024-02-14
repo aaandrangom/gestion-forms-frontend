@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl =
-    'https://gestion-de-formularios-mcevallos.onrender.com/api/usuario';
+  private apiUrl = 'http://localhost:3000/api/usuario';
 
   constructor(private http: HttpClient) {}
 

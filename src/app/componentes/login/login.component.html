@@ -1,41 +1,74 @@
-<div
-  class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light"
->
-  <div class="card shadow" style="max-width: 400px; width: 100%">
-    <div class="card-body">
-      <div class="tabs">
-        <div class="tab active">Iniciar sesión</div>
+<div class="flex items-center justify-center min-h-screen bg-brand-light">
+  <div class="w-full max-w-md px-6 py-8 bg-white rounded-2xl shadow-lg">
+    <h2 class="text-center text-2xl text-brand-gray font-bold mb-8">
+      Iniciar sesión
+    </h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4m4 5a4 4 0 100-8 4 4 0 000 8z"
+            />
+          </svg>
+        </span>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="w-full p-2 rounded-r-md"
+          placeholder="ejemplo@correo.com"
+        />
       </div>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4">
-        <div class="form-group">
-          <input
-            type="email"
-            id="email"
-            formControlName="email"
-            class="form-control"
-            placeholder="Correo electrónico"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="password"
-            id="password"
-            formControlName="password"
-            class="form-control"
-            placeholder="Contraseña"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          [disabled]="loginForm.invalid"
-        >
-          Iniciar sesión
-        </button>
-      </form>
-      <div class="text-center mt-3">
-        <span>¿No tienes una cuenta? <a href="/registro">Regístrate</a></span>
+      <div
+        class="flex items-center border border-gray-300 rounded-md shadow-sm"
+      >
+        <span class="p-2">
+          <svg
+            class="h-5 w-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4m4 5a4 4 0 100-8 4 4 0 000 8z"
+            />
+          </svg>
+        </span>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="w-full p-2 rounded-r-md"
+          placeholder="Ingresa tu contraseña"
+        />
       </div>
-    </div>
+      <button
+        type="submit"
+        class="w-full bg-brand-blue text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50"
+        [disabled]="loginForm.invalid"
+      >
+        Iniciar sesión
+      </button>
+    </form>
+    <p class="mt-6 text-sm text-center text-brand-gray">
+      ¿No tienes una cuenta?
+      <a href="/registro" class="text-brand-blue hover:text-blue-700"
+        >Regístrate</a
+      >
+    </p>
   </div>
 </div>

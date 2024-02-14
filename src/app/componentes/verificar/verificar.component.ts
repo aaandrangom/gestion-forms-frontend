@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '../../services/api/api.service';
+import { ApiService } from '../../services/api/usuario/usuario.service';
 import { ModalVerificarComponent } from '../modal-verificar/modal-verificar.component';
 import { EmailService } from '../../services/email/email.service';
 import { Router } from '@angular/router';
