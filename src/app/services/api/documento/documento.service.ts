@@ -11,7 +11,8 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class Formulario1Service {
-  private apiUrl = 'http://localhost:3000/api/documento';
+  private apiUrl =
+    'https://gestion-de-formularios-mcevallos.onrender.com/api/documento';
 
   constructor(private http: HttpClient) {}
 

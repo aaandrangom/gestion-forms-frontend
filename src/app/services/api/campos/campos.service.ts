@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CamposService {
-  private apiUrl = 'http://localhost:3000/api/campos';
+  private apiUrl =
+    'https://gestion-de-formularios-mcevallos.onrender.com/api/campos';
   constructor(private http: HttpClient) {}
 
   getAllFields(): Observable<any> {

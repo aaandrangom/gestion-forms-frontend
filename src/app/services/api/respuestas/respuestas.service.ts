@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RespuestasService {
-  private apiUrl = 'http://localhost:3000/api/respuesta';
+  private apiUrl =
+    'https://gestion-de-formularios-mcevallos.onrender.com/api/respuesta';
   constructor(private http: HttpClient) {}
 
   insertResponses(responseData: any): Observable<any> {
