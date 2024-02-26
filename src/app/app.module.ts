@@ -1,19 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Asegúrate de importar HTTP_INTERCEPTORS aquí
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistroComponent } from './componentes/registro/registro.component';
+import { RegistroComponent } from './componentes/autenticacion/registro/registro.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalContentComponent } from './componentes/modal-content/modal-content.component';
-import { LoginComponent } from './componentes/login/login.component';
-import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
-import { VerificarComponent } from './componentes/verificar/verificar.component';
-import { ModalVerificarComponent } from './componentes/modal-verificar/modal-verificar.component';
-import { LayoutComponent } from './componentes/layout/layout.component';
-import { Form1Component } from './componentes/form1/form1.component';
-import { JwtInterceptor } from './interceptor/jwt.interceptor'; // Asegúrate de que la ruta sea correcta
+import { ModalContentComponent } from './componentes/diseño/modal-content/modal-content.component';
+import { LoginComponent } from './componentes/autenticacion/login/login.component';
+import { ModalLoginComponent } from './componentes/diseño/modal-login/modal-login.component';
+import { VerificarComponent } from './componentes/autenticacion/verificar/verificar.component';
+import { ModalVerificarComponent } from './componentes/diseño/modal-verificar/modal-verificar.component';
+import { LayoutComponent } from './componentes/usuario/layout/layout.component';
+import { Form1Component } from './componentes/usuario/forms/forms.component';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'; // Asegúrate de que la ruta sea correcta
+import { SafeHtmlPipe } from './componentes/diseño/safeHtml/safe-html.pipe';
+import { FormulariosHabilitadosComponent } from './componentes/administrador/habilitados/habilitados.component';
+import { LayoutAdminComponent } from './componentes/administrador/layout-admin/layout-admin.component';
+import { EditarFormComponent } from './componentes/administrador/editar-form/editar-form.component';
+import { DeshabilitadosComponent } from './componentes/administrador/deshabilitados/deshabilitados.component';
+import { FormularioDetalleComponent } from './componentes/administrador/formulario-detalle/formulario-detalle.component';
+import { EdicionComponent } from './componentes/diseño/modal-editar/edicion/edicion.component';
+import { CrearFormularioComponent } from './componentes/administrador/crear-formulario/crear-formulario.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +35,14 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor'; // Asegúrate de
     ModalVerificarComponent,
     LayoutComponent,
     Form1Component,
+    SafeHtmlPipe,
+    LayoutAdminComponent,
+    FormulariosHabilitadosComponent,
+    EditarFormComponent,
+    DeshabilitadosComponent,
+    FormularioDetalleComponent,
+    EdicionComponent,
+    CrearFormularioComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,13 +50,15 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor'; // Asegúrate de
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    FormsModule,
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, // Indica que estás proporcionando un interceptor HTTP
-      useClass: JwtInterceptor, // La clase del interceptor
-      multi: true, // Permite múltiples interceptores
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
     },
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
 })

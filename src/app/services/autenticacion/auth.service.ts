@@ -9,7 +9,6 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any>;
 
   constructor(private apiService: ApiService) {
-    // Inicializa currentUserSubject con el valor almacenado o null si no hay nada almacenado
     const storedUser = localStorage.getItem('currentUser');
     this.currentUserSubject = new BehaviorSubject<any>(
       storedUser ? JSON.parse(storedUser) : null

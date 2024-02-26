@@ -1,0 +1,36 @@
+<div class="flex">
+  <div class="min-h-screen bg-brand-light shadow-lg">
+    <div class="px-6 py-8">
+      <h3 class="text-xl text-brand-gray font-bold mb-4">Menú</h3>
+      <div class="space-y-2">
+        <button
+          (click)="toggleFormOptions()"
+          class="text-brand-blue hover:text-blue-700 font-semibold py-2 w-full text-left"
+        >
+          Formularios
+        </button>
+        <div *ngIf="isFormOptionsVisible" class="pl-4 space-y-2">
+          <a
+            *ngFor="let formulario of formularios"
+            (click)="setCurrentComponent(formulario.templatename)"
+            [routerLink]="['/principal/formulario/', formulario.formid]"
+            class="block text-sm text-brand-gray hover:text-blue-700"
+          >
+            {{ formulario.formname }}
+          </a>
+        </div>
+        <!-- Botón de Cierre de Sesión -->
+        <button
+          (click)="logout()"
+          class="mt-4 text-brand-blue hover:text-blue-700 font-semibold py-2 w-full text-left"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

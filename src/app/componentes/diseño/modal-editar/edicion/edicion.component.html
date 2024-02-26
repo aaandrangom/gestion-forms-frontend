@@ -1,0 +1,72 @@
+<div *ngIf="campoSeleccionado" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarModal()">&times;</span>
+    <h2>Editar Campo</h2>
+    <div>
+      <label for="nombreCampo">Campo:</label>
+      <input
+        type="text"
+        id="nombreCampo"
+        [(ngModel)]="campoSeleccionado.nombreCampo"
+        disabled
+      />
+    </div>
+    <div>
+      <label for="nombreLabel">Nombre del Label:</label>
+      <input
+        type="text"
+        id="nombreLabel"
+        [(ngModel)]="campoSeleccionado.nombreLabel"
+      />
+    </div>
+    <div>
+      <label for="tipo">Tipo de datos:</label>
+      <select id="tipo" [(ngModel)]="campoSeleccionado.tipo">
+        <option value="number">Número</option>
+        <option value="string">Texto</option>
+      </select>
+    </div>
+    <div *ngIf="campoSeleccionado.tipo === 'string'">
+      <label for="validaciones">Validaciones:</label>
+      <input
+        type="text"
+        id="validaciones"
+        [(ngModel)]="campoSeleccionado.validaciones"
+      />
+    </div>
+    <div *ngIf="campoSeleccionado.tipo === 'number'">
+      <label for="longitud">Longitud:</label>
+      <input
+        type="text"
+        id="longitud"
+        [(ngModel)]="campoSeleccionado.validaciones.longitud"
+      />
+      <label for="formato">Formato (si aplica):</label>
+      <input
+        type="text"
+        id="formato"
+        [(ngModel)]="campoSeleccionado.validaciones.formato"
+      />
+      <div>
+        <label>Entero:</label>
+        <input
+          type="radio"
+          id="enteroSi"
+          name="entero"
+          value="true"
+          [(ngModel)]="campoSeleccionado.validaciones.entero"
+        />
+        <label for="enteroSi">Sí</label>
+        <input
+          type="radio"
+          id="enteroNo"
+          name="entero"
+          value="false"
+          [(ngModel)]="campoSeleccionado.validaciones.entero"
+        />
+        <label for="enteroNo">No</label>
+      </div>
+    </div>
+    <button (click)="guardar()">Guardar</button>
+  </div>
+</div>
