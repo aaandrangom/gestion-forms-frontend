@@ -11,6 +11,7 @@ import { FormulariosHabilitadosComponent } from './componentes/administrador/hab
 import { DeshabilitadosComponent } from './componentes/administrador/deshabilitados/deshabilitados.component';
 import { FormularioDetalleComponent } from './componentes/administrador/formulario-detalle/formulario-detalle.component';
 import { CrearFormularioComponent } from './componentes/administrador/crear-formulario/crear-formulario.component';
+import { ActividadesComponent } from './componentes/administrador/actividades/actividades.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -48,6 +49,10 @@ const routes: Routes = [
       {
         path: 'crear-formulario',
         component: CrearFormularioComponent,
+      },
+      {
+        path: 'actividades',
+        component: ActividadesComponent,
       },
     ],
   },

@@ -26,18 +26,14 @@ export class FormulariosService {
     return this.http.get<any[]>(`${this.apiUrl}/administrador/deshabilitados`);
   }
 
-  updateStatusToFalse(formId: number): Observable<any> {
-    return this.http.put(
-      `${this.apiUrl}/administrador/deshabilitar/${formId}`,
-      null
-    );
+  updateStatusToFalse(formId: number, cedula: string): Observable<any> {
+    const url = `${this.apiUrl}/administrador/deshabilitar/${formId}`;
+    return this.http.put(url, { cedula });
   }
 
-  updateStatusToTrue(formId: number): Observable<any> {
-    return this.http.put(
-      `${this.apiUrl}/administrador/habilitar/${formId}`,
-      null
-    );
+  updateStatusToTrue(formId: number, cedula: string): Observable<any> {
+    const url = `${this.apiUrl}/administrador/habilitar/${formId}`;
+    return this.http.put(url, { cedula });
   }
 
   getFormById(formId: number): Observable<any> {
@@ -48,7 +44,8 @@ export class FormulariosService {
     formId: number,
     formname: any,
     description: any,
-    fields: any
+    fields: any,
+    cedula: string
   ): Observable<any> {
     return this.http.put(
       `${this.apiUrl}/administrador/editar/campos/${formId}`,
@@ -56,6 +53,7 @@ export class FormulariosService {
         formname,
         description,
         fields,
+        cedula,
       }
     );
   }
@@ -63,12 +61,14 @@ export class FormulariosService {
   createForm(
     formname: string,
     description: string,
-    status: boolean
+    status: boolean,
+    cedula: string
   ): Observable<any> {
     return this.http.post(`${this.apiUrl}/administrador/crear`, {
       formname,
       description,
       status,
+      cedula,
     });
   }
 }

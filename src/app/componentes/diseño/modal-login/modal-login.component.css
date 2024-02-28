@@ -1,0 +1,44 @@
+/* modal-login.component.css */
+
+/* Estilos para el fondo oscuro detrás del modal */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+}
+
+/* Estilos para el contenido del modal */
+.modal-content {
+  background-color: #fff; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+/* Estilos para el encabezado del modal */
+.modal-header {
+  border-bottom: none; /* Sin borde inferior */
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para el cuerpo del modal */
+.modal-body {
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para el pie del modal */
+.modal-footer {
+  border-top: none; /* Sin borde superior */
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para el botón de cerrar en el encabezado */
+.modal-header .close {
+  font-size: 1.5rem; /* Tamaño de fuente del botón */
+  font-weight: bold; /* Texto en negrita */
+  color: #000; /* Color del botón */
+  opacity: 0.5; /* Opacidad del botón */
+}
+
+/* Estilos para el botón de cerrar en el encabezado al pasar el mouse */
+.modal-header .close:hover {
+  opacity: 1; /* Opacidad completa al pasar el mouse */
+  cursor: pointer; /* Cambia el cursor a un puntero al pasar el mouse */
+}

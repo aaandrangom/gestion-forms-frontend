@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HabilitadosComponent } from './habilitados.component';
+import { FormulariosHabilitadosComponent } from './habilitados.component';
 
 describe('HabilitadosComponent', () => {
-  let component: HabilitadosComponent;
-  let fixture: ComponentFixture<HabilitadosComponent>;
+  let component: FormulariosHabilitadosComponent;
+  let fixture: ComponentFixture<FormulariosHabilitadosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HabilitadosComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(HabilitadosComponent);
+      declarations: [FormulariosHabilitadosComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(FormulariosHabilitadosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

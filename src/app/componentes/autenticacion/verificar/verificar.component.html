@@ -1,46 +1,47 @@
-<div class="flex items-center justify-center min-h-screen bg-brand-light">
-  <div class="w-full max-w-sm px-6 py-8 bg-white rounded-2xl shadow-lg">
-    <h2 class="text-center text-2xl text-brand-gray font-bold mb-8">
-      Verificación
-    </h2>
-    <form
-      [formGroup]="verificationForm"
-      (ngSubmit)="onSubmit()"
-      class="space-y-4"
-    >
-      <div
-        class="flex items-center border border-gray-300 rounded-md shadow-sm"
-      >
-        <span class="p-2">
-          <svg
-            class="h-5 w-5 text-gray-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </span>
-        <input
-          type="text"
-          id="verificationcode"
-          formControlName="verificationcode"
-          class="w-full p-2 rounded-r-md"
-          placeholder="Ingrese el código de verificación"
-        />
+<div
+  class="d-flex align-items-center justify-content-center min-vh-100 bg-light"
+>
+  <div class="w-100 d-flex flex-column align-items-center">
+    <!-- Contenedor principal -->
+
+    <!-- Alerta de verificarMensaje -->
+    <div class="text-center mb-3" *ngIf="verificarMensaje">
+      <div class="alert alert-{{ verificarMensaje.type }}" role="alert">
+        {{ verificarMensaje.text }}
       </div>
-      <button
-        type="submit"
-        class="w-full bg-brand-blue text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50"
-        [disabled]="verificationForm.invalid"
+    </div>
+
+    <div class="w-25 w-md-50 px-4 py-5 bg-white rounded-3 shadow-lg">
+      <h2 class="text-center text-2xl text-secondary font-weight-bold mb-4">
+        Verificación
+      </h2>
+
+      <!-- Formulario de verificación -->
+      <form
+        [formGroup]="verificationForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-4"
       >
-        Verificar
-      </button>
-    </form>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-key"></i>
+          </span>
+          <input
+            type="text"
+            id="verificationcode"
+            formControlName="verificationcode"
+            class="form-control"
+            placeholder="Ingrese el código de verificación"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary w-100 mt-3"
+          [disabled]="verificationForm.invalid"
+        >
+          Verificar
+        </button>
+      </form>
+    </div>
   </div>
 </div>

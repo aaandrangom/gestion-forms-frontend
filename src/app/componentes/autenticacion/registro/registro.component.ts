@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api/usuario/usuario.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalContentComponent } from '../../diseño/modal-content/modal-content.component';
 import { EmailService } from '../../../services/email/email.service';
 import { Router } from '@angular/router';
 
@@ -13,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent {
   registroForm: FormGroup;
+  mensajeRegistro: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private modalService: NgbModal,
     private emailService: EmailService,
     private router: Router
   ) {
@@ -37,13 +35,8 @@ export class RegistroComponent {
     this.apiService.registerUser(userData).subscribe(
       (response) => {
         console.log('Usuario registrado exitosamente', response);
-        const mensajeRegistro = response.message;
-        this.emailService.setEmail(userData.email);
-        const modalRef = this.modalService.open(ModalContentComponent, {
-          centered: true,
-        });
-        modalRef.componentInstance.message = mensajeRegistro;
-
+        this.mensajeRegistro = response.message;
+        localStorage.setItem('email', userData.email);
         this.router.navigate(['/verificar']);
       },
       (error) => {

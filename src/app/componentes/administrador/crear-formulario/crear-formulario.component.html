@@ -1,64 +1,70 @@
-<div class="container mx-auto px-4">
-  <div class="max-w-2xl mx-auto my-10">
-    <div class="bg-white shadow-lg rounded-lg p-8">
-      <h2 class="text-2xl font-bold text-center text-gray-700 mb-8">
-        Crear Nuevo Formulario
-      </h2>
-      <form
-        *ngIf="formGroup"
-        [formGroup]="formGroup"
-        (ngSubmit)="onSubmit()"
-        class="space-y-6"
-      >
-        <div class="form-group">
-          <label for="formname" class="text-sm font-medium text-gray-700">
-            Nombre del Formulario
-          </label>
-          <input
-            type="text"
-            id="formname"
-            formControlName="formname"
-            placeholder="Ingrese el nombre del formulario"
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="description" class="text-sm font-medium text-gray-700">
-            Descripción
-          </label>
-          <textarea
-            id="description"
-            formControlName="description"
-            placeholder="Ingrese la descripción del formulario"
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-          ></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="status" class="text-sm font-medium text-gray-700">
-            Estado
-          </label>
-          <select
-            id="status"
-            formControlName="status"
-            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+<div class="container mt-5">
+  <div *ngIf="mensaje" class="alert alert-{{ mensaje.type }}" role="alert">
+    {{ mensaje.text }}
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-5">
+          <h2 class="text-center mb-4">Crear Nuevo Formulario</h2>
+          <form
+            *ngIf="formGroup"
+            [formGroup]="formGroup"
+            (ngSubmit)="onSubmit()"
           >
-            <option [ngValue]="true">Habilitado</option>
-            <option [ngValue]="false">Deshabilitado</option>
-          </select>
-        </div>
+            <div class="mb-3">
+              <label for="formname" class="form-label"
+                >Nombre del Formulario</label
+              >
+              <input
+                type="text"
+                id="formname"
+                formControlName="formname"
+                class="form-control"
+                placeholder="Ingrese el nombre del formulario"
+              />
+            </div>
 
-        <div class="flex justify-center mt-8">
-          <button
-            type="submit"
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50"
-            [disabled]="formGroup.invalid"
-          >
-            Generar Documento
-          </button>
+            <div class="mb-3">
+              <label for="description" class="form-label">Descripción</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Ingrese la descripción del formulario"
+              ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="status" class="form-label">Estado</label>
+              <select id="status" formControlName="status" class="form-control">
+                <option value="true">Habilitado</option>
+                <option value="false">Deshabilitado</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="file" class="form-label">Subir Archivo</label>
+              <input
+                type="file"
+                id="file"
+                (change)="onFileSelected($event)"
+                class="form-control"
+              />
+            </div>
+
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="formGroup.invalid"
+              >
+                Generar Documento
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

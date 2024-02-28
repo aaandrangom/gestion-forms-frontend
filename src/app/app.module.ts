@@ -23,6 +23,7 @@ import { DeshabilitadosComponent } from './componentes/administrador/deshabilita
 import { FormularioDetalleComponent } from './componentes/administrador/formulario-detalle/formulario-detalle.component';
 import { EdicionComponent } from './componentes/diseño/modal-editar/edicion/edicion.component';
 import { CrearFormularioComponent } from './componentes/administrador/crear-formulario/crear-formulario.component';
+import { ActividadesComponent } from './componentes/administrador/actividades/actividades.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CrearFormularioComponent } from './componentes/administrador/crear-form
     FormularioDetalleComponent,
     EdicionComponent,
     CrearFormularioComponent,
+    ActividadesComponent,
   ],
   imports: [
     BrowserModule,

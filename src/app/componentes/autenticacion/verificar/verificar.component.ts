@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../../services/api/usuario/usuario.service';
-import { ModalVerificarComponent } from '../../diseño/modal-verificar/modal-verificar.component';
 import { EmailService } from '../../../services/email/email.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-verificar',
   templateUrl: './verificar.component.html',
-  styleUrl: './verificar.component.css',
+  styleUrls: ['./verificar.component.css'],
 })
 export class VerificarComponent implements OnInit {
   verificationForm: FormGroup;
   userEmail: string | null;
+  verificarMensaje: { text: string; type: string } | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private modalService: NgbModal,
     private emailService: EmailService,
-    private router: Router //
+    private router: Router
   ) {
     this.verificationForm = this.formBuilder.group({
       verificationcode: ['', [Validators.required]],
@@ -36,28 +34,30 @@ export class VerificarComponent implements OnInit {
       return;
     }
 
+    const email = localStorage.getItem('email');
+
     const userData = {
-      email: this.userEmail,
+      email: email,
       verificationcode: this.verificationForm.value.verificationcode,
     };
 
     this.apiService.verifyUser(userData).subscribe(
       (response) => {
-        const mensajeVerificar = response.message;
-
-        const modalRef = this.modalService.open(ModalVerificarComponent, {
-          centered: true,
-        });
-        modalRef.componentInstance.message = mensajeVerificar;
-
+        console.log(userData);
+        this.verificarMensaje = {
+          text: response.message,
+          type: 'success',
+        };
+        console.log('ERROR', response);
         this.router.navigate(['/login']);
       },
       (error) => {
-        const errorMessage = error.error.message;
-        const modalRef = this.modalService.open(ModalVerificarComponent, {
-          centered: true,
-        });
-        modalRef.componentInstance.message = errorMessage;
+        this.verificarMensaje = {
+          text: error.error.message,
+          type: 'danger',
+        };
+        console.log(userData);
+        console.log('ERROR', error);
       }
     );
   }

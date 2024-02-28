@@ -1,0 +1,36 @@
+<!-- activities.component.html -->
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col">
+      <h2>Listado de Actividades</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table id="tablaActividades" class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cédula</th>
+            <th>Tipo de Actividad</th>
+            <th>Descripción</th>
+            <th>Fecha y Hora</th>
+            <th>Dirección IP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Utiliza *ngFor para iterar sobre las actividades y mostrarlas -->
+          <tr *ngFor="let actividad of actividades">
+            <td>{{ actividad.activityid }}</td>
+            <td>{{ actividad.cedula }}</td>
+            <td>{{ actividad.activitytype }}</td>
+            <td>{{ actividad.description }}</td>
+            <td>{{ actividad.timestamp | date : "dd/MM/yyyy HH:mm:ss" }}</td>
+            <td>{{ actividad.ipaddress }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
