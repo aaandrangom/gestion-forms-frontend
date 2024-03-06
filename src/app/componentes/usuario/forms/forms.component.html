@@ -23,9 +23,24 @@
                   <label
                     for="{{ fieldValue }}"
                     class="form-label text-uppercase text-muted font-weight-bold"
-                    >{{ fieldValue }}</label
                   >
+                    {{ fieldValue }}
+                  </label>
+                  <div *ngIf="isCityField(fieldValue)">
+                    <select [formControlName]="fieldValue" class="form-control">
+                      <option value="" disabled selected>
+                        Selecciona una ciudad
+                      </option>
+                      <option
+                        *ngFor="let ciudad of ciudadesEcuador | keyvalue"
+                        [value]="ciudad.value.provincia"
+                      >
+                        {{ ciudad.value.provincia }}
+                      </option>
+                    </select>
+                  </div>
                   <input
+                    *ngIf="!isCityField(fieldValue)"
                     [type]="isDateField(fieldValue) ? 'date' : 'text'"
                     [formControlName]="fieldValue"
                     class="form-control"
@@ -36,18 +51,6 @@
                         formGroup.get(fieldValue)?.touched
                     }"
                   />
-                  <div *ngIf="isCityField(fieldValue)">
-                    <!-- Si es un campo de ciudad, crea un combo box -->
-                    <select [formControlName]="fieldValue">
-                      <!-- Llena el combo box con las opciones apropiadas -->
-                      <option
-                        *ngFor="let ciudad of ciudadesEcuador"
-                        [value]="ciudad"
-                      >
-                        {{ ciudad.provincia }}
-                      </option>
-                    </select>
-                  </div>
                   <div
                     class="invalid-feedback"
                     *ngIf="

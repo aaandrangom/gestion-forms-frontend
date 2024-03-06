@@ -255,6 +255,6 @@ export class Form1Component implements OnInit, OnDestroy {
   }
 
   isCityField(fieldName: string): boolean {
-    return fieldName.toLowerCase().includes('ciudad');
+    return fieldName.toLowerCase().includes('provincia');
   }
 }
