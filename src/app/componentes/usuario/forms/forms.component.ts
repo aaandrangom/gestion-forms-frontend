@@ -5,6 +5,7 @@ import { Formulario1Service } from '../../../services/api/documento/documento.se
 import { FormulariosService } from '../../../services/api/formularios/formularios.service';
 import { RespuestasService } from '../../../services/api/respuestas/respuestas.service';
 import { ComponentTrackerServiceService } from '../../../services/formularios/component-tracker-service.service';
+import * as ciudadesEcuadorJSON from '../../../config/provincias.json';
 
 @Component({
   selector: 'app-form1',
@@ -18,6 +19,7 @@ export class Form1Component implements OnInit, OnDestroy {
   cedula: string | null = null;
   nombreImagen: string | null = null;
   private componentTrackerSubscription: Subscription | undefined;
+  ciudadesEcuador: any[] = (ciudadesEcuadorJSON as any).default;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -250,5 +252,9 @@ export class Form1Component implements OnInit, OnDestroy {
 
   isDateField(fieldName: string): boolean {
     return fieldName.toLowerCase().includes('fecha');
+  }
+
+  isCityField(fieldName: string): boolean {
+    return fieldName.toLowerCase().includes('ciudad');
   }
 }

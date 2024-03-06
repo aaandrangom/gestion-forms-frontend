@@ -36,6 +36,18 @@
                         formGroup.get(fieldValue)?.touched
                     }"
                   />
+                  <div *ngIf="isCityField(fieldValue)">
+                    <!-- Si es un campo de ciudad, crea un combo box -->
+                    <select [formControlName]="fieldValue">
+                      <!-- Llena el combo box con las opciones apropiadas -->
+                      <option
+                        *ngFor="let ciudad of ciudadesEcuador"
+                        [value]="ciudad"
+                      >
+                        {{ ciudad.provincia }}
+                      </option>
+                    </select>
+                  </div>
                   <div
                     class="invalid-feedback"
                     *ngIf="
