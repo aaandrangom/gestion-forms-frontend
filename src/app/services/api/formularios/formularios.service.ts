@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_CONFIG } from '../../../config/api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormulariosService {
-  private apiUrl =
-    'https://gestion-de-formularios-mcevallos.onrender.com/api/formulario';
+  private apiUrl: string = `${API_CONFIG.production}/formulario`;
   constructor(private http: HttpClient) {}
 
   getForm(formDate: any): Observable<any> {

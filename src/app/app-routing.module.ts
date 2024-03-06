@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, platformCore } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistroComponent } from './componentes/autenticacion/registro/registro.component';
 import { LoginComponent } from './componentes/autenticacion/login/login.component';
@@ -12,12 +12,17 @@ import { DeshabilitadosComponent } from './componentes/administrador/deshabilita
 import { FormularioDetalleComponent } from './componentes/administrador/formulario-detalle/formulario-detalle.component';
 import { CrearFormularioComponent } from './componentes/administrador/crear-formulario/crear-formulario.component';
 import { ActividadesComponent } from './componentes/administrador/actividades/actividades.component';
+import { PlantillasComponent } from './componentes/administrador/plantillas/plantillas.component';
+import { RecuperarContraseniaComponent } from './componentes/autenticacion/recuperar-contrasenia/recuperar-contrasenia.component';
+import { OlvidarContraseniaComponent } from './componentes/autenticacion/olvidar-contrasenia/olvidar-contrasenia.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
   { path: 'verificar', component: VerificarComponent },
+  { path: 'olvidar-contraseña', component: OlvidarContraseniaComponent },
+  { path: 'recuperar-contraseña', component: RecuperarContraseniaComponent },
   {
     path: 'principal',
     component: LayoutComponent,
@@ -45,6 +50,10 @@ const routes: Routes = [
       {
         path: 'formulariosdeshabilitados',
         component: DeshabilitadosComponent,
+      },
+      {
+        path: 'plantillas',
+        component: PlantillasComponent,
       },
       {
         path: 'crear-formulario',

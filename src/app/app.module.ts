@@ -24,6 +24,9 @@ import { FormularioDetalleComponent } from './componentes/administrador/formular
 import { EdicionComponent } from './componentes/diseño/modal-editar/edicion/edicion.component';
 import { CrearFormularioComponent } from './componentes/administrador/crear-formulario/crear-formulario.component';
 import { ActividadesComponent } from './componentes/administrador/actividades/actividades.component';
+import { PlantillasComponent } from './componentes/administrador/plantillas/plantillas.component';
+import { RecuperarContraseniaComponent } from './componentes/autenticacion/recuperar-contrasenia/recuperar-contrasenia.component';
+import { OlvidarContraseniaComponent } from './componentes/autenticacion/olvidar-contrasenia/olvidar-contrasenia.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { ActividadesComponent } from './componentes/administrador/actividades/ac
     EdicionComponent,
     CrearFormularioComponent,
     ActividadesComponent,
+    PlantillasComponent,
+    RecuperarContraseniaComponent,
+    OlvidarContraseniaComponent,
   ],
   imports: [
     BrowserModule,

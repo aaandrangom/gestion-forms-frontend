@@ -1,0 +1,52 @@
+<div class="p-4">
+  <h2 class="text-xl font-bold mb-4 text-center">Plantillas</h2>
+  <div class="table-responsive">
+    <div
+      *ngIf="plantillasMessage"
+      class="alert alert-{{
+        plantillasMessage.type
+      }} d-flex justify-content-between align-items-center"
+      role="alert"
+    >
+      <span>{{ plantillasMessage.text }}</span>
+      <button
+        type="button"
+        class="btn-close btn-close-custom"
+        aria-label="Cerrar"
+        (click)="cerrarMensaje()"
+      ></button>
+    </div>
+    <table
+      id="formulariosTable"
+      class="table table-striped table-bordered"
+      style="width: 100%"
+    >
+      <thead class="bg-gray-50">
+        <tr>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plantilla of plantillas">
+          <td>{{ plantilla }}</td>
+          <td>
+            <input
+              type="file"
+              #fileInput
+              style="display: none"
+              (change)="onFileSelected($event, plantilla)"
+            />
+            <button
+              class="btn btn-secondary btn-sm"
+              (click)="fileInput.click()"
+              title="Subir"
+            >
+              <i class="fas fa-upload"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

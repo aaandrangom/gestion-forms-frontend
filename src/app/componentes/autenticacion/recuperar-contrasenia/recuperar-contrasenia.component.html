@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6">
+      <div
+        class="card shadow-lg p-4 rounded"
+        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)"
+      >
+        <div
+          *ngIf="recuperarContraseniaMessage"
+          class="alert alert-{{
+            recuperarContraseniaMessage.type
+          }} d-flex justify-content-between align-items-center"
+          role="alert"
+        >
+          <span>{{ recuperarContraseniaMessage.text }}</span>
+          <button
+            type="button"
+            class="btn-close btn-close-custom"
+            aria-label="Cerrar"
+            (click)="cerrarMensaje()"
+          ></button>
+        </div>
+        <div class="card-body">
+          <h2 class="text-center text-primary mb-4">Restablecer Contraseña</h2>
+          <form
+            [formGroup]="resetForm"
+            (ngSubmit)="onSubmit()"
+            class="needs-validation"
+            novalidate
+          >
+            <div class="mb-3">
+              <label for="newPassword" class="form-label"
+                >Nueva Contraseña</label
+              >
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <input
+                  type="password"
+                  id="newPassword"
+                  formControlName="newPassword"
+                  class="form-control rounded-end"
+                  placeholder="Nueva Contraseña"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor, ingresa una nueva contraseña.
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label"
+                >Confirmar Contraseña</label
+              >
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  formControlName="confirmPassword"
+                  class="form-control rounded-end"
+                  placeholder="Confirmar Contraseña"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor, confirma tu nueva contraseña.
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="resetForm.hasError('passwordMismatch')"
+                >
+                  Las contraseñas no coinciden.
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary w-100"
+              [disabled]="resetForm.invalid"
+            >
+              Restablecer Contraseña
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

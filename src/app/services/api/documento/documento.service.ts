@@ -6,13 +6,13 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { API_CONFIG } from '../../../config/api.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Formulario1Service {
-  private apiUrl =
-    'https://gestion-de-formularios-mcevallos.onrender.com/api/documento';
+  private apiUrl: string = `${API_CONFIG.production}/documento`;
 
   constructor(private http: HttpClient) {}
 
