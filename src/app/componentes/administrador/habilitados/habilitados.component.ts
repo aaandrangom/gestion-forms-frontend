@@ -13,7 +13,7 @@ import 'datatables.net';
 export class FormulariosHabilitadosComponent implements OnInit, OnDestroy {
   formularios: any[] = [];
   cedula: string | null = null;
-  dataTable: any; // Declaración de la propiedad dataTable
+  dataTable: any;
 
   constructor(
     private formulariosService: FormulariosService,
@@ -32,6 +32,9 @@ export class FormulariosHabilitadosComponent implements OnInit, OnDestroy {
   }
 
   getFormsEnabled() {
+    if (this.dataTable) {
+      this.dataTable.destroy();
+    }
     this.formulariosService.getFormsEnabled().subscribe(
       (data) => {
         this.formularios = data;
@@ -70,7 +73,6 @@ export class FormulariosHabilitadosComponent implements OnInit, OnDestroy {
         .updateStatusToFalse(formulario.formid, this.cedula)
         .subscribe(
           (response) => {
-            console.log('Formulario deshabilitado:', response);
             this.getFormsEnabled();
           },
           (error) => {

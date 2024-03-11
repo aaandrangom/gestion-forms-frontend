@@ -43,12 +43,10 @@ export class VerificarComponent implements OnInit {
 
     this.apiService.verifyUser(userData).subscribe(
       (response) => {
-        console.log(userData);
         this.verificarMensaje = {
           text: response.message,
           type: 'success',
         };
-        console.log('ERROR', response);
         this.router.navigate(['/login']);
       },
       (error) => {
@@ -56,8 +54,6 @@ export class VerificarComponent implements OnInit {
           text: error.error.message,
           type: 'danger',
         };
-        console.log(userData);
-        console.log('ERROR', error);
       }
     );
   }

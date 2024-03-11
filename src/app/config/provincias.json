@@ -906,15 +906,6 @@
           "80754": "MONTALVO (CAB. EN HORQUETA)",
           "80755": "ROCAFUERTE"
         }
-      },
-      "808": {
-        "canton": "LA CONCORDIA",
-        "parroquias": {
-          "80850": "LA CONCORDIA",
-          "80851": "MONTERREY",
-          "80852": "LA VILLEGAS",
-          "80853": "PLAN PILOTO"
-        }
       }
     }
   },
@@ -2580,6 +2571,15 @@
           "230156": "EL ESFUERZO",
           "230157": "SANTA MARÍA DEL TOACHI"
         }
+      },
+      "2302": {
+        "canton": "LA CONCORDIA",
+        "parroquias": {
+          "80850": "LA CONCORDIA",
+          "80851": "MONTERREY",
+          "80852": "LA VILLEGAS",
+          "80853": "PLAN PILOTO"
+        }
       }
     }
   },
@@ -2617,22 +2617,6 @@
           "240351": "ANCONCITO",
           "240352": "JOSÉ LUIS TAMAYO (MUEY)"
         }
-      }
-    }
-  },
-  "90": {
-    "cantones": {
-      "9001": {
-        "canton": "LAS GOLONDRINAS",
-        "parroquias": null
-      },
-      "9003": {
-        "canton": "MANGA DEL CURA",
-        "parroquias": null
-      },
-      "9004": {
-        "canton": "EL PIEDRERO",
-        "parroquias": null
       }
     }
   }

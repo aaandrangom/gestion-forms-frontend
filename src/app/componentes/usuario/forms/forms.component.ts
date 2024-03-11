@@ -19,7 +19,8 @@ export class Form1Component implements OnInit, OnDestroy {
   cedula: string | null = null;
   nombreImagen: string | null = null;
   private componentTrackerSubscription: Subscription | undefined;
-  ciudadesEcuador: any[] = (ciudadesEcuadorJSON as any).default;
+  provincias: any[] = Object.values((ciudadesEcuadorJSON as any).default);
+  fieldProvincia: string = 'provincia';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,9 +60,7 @@ export class Form1Component implements OnInit, OnDestroy {
           this.initializeForm();
           this.loadData();
         },
-        error: (error) => {
-          console.error('Error al cargar el formulario', error);
-        },
+        error: (error) => {},
       });
   }
 
@@ -76,17 +75,19 @@ export class Form1Component implements OnInit, OnDestroy {
         formControls[fieldValue] = [null];
       }
 
-      // Modificar la validación según las condiciones
-      if ('si' in this.formTemplate.fields && formControls['si']) {
-        formControls['si'].push(Validators.required);
-      }
-      if ('no' in this.formTemplate.fields && formControls['no']) {
-        formControls['no'].push(Validators.required);
-      }
+      // Verificar si tanto 'si' como 'no' están presentes
+      const hasSi = 'si' in this.formTemplate.fields;
+      const hasNo = 'no' in this.formTemplate.fields;
 
-      fieldsArray.forEach((fieldValue) => {
-        formControls[fieldValue].push(Validators.required);
-      });
+      if (hasSi && hasNo) {
+        fieldsArray.forEach((fieldValue) => {
+          formControls[fieldValue] = [];
+        });
+      } else {
+        fieldsArray.forEach((fieldValue) => {
+          formControls[fieldValue].push(Validators.required);
+        });
+      }
     }
     this.formGroup = this.formBuilder.group(formControls);
   }
@@ -108,23 +109,11 @@ export class Form1Component implements OnInit, OnDestroy {
                   }
                 });
                 this.formGroup?.patchValue(formValues);
-              } else {
-                console.log(
-                  'responseData es null, considera inicializar el formulario con valores por defecto.'
-                );
               }
-            } else {
-              console.log(
-                'No se encontraron datos de respuesta, considera inicializar el formulario con valores por defecto.'
-              );
             }
           },
           error: (error) => {},
         });
-    } else {
-      console.error(
-        'La cédula o la plantilla de formulario no están disponibles'
-      );
     }
   }
 
@@ -162,8 +151,6 @@ export class Form1Component implements OnInit, OnDestroy {
             this.nombreImagen = 'Debe seleccionar una imagen';
           },
         });
-    } else {
-      console.error('El formulario no es válido o falta la imagen');
     }
   }
   createDocument(documentData: any) {
@@ -174,14 +161,11 @@ export class Form1Component implements OnInit, OnDestroy {
       },
       error: (error) => {
         if (error.errors) {
-          console.log(error.errors);
           const errorMessage = error.errors
             .map((err: any) => `-Error: ${err.mensaje}`)
             .join('<br>');
 
           this.nombreImagen = `Bloque de errores: <br>${errorMessage}`;
-        } else {
-          console.error('Error al generar el documento:', error.message);
         }
       },
     });
@@ -195,12 +179,8 @@ export class Form1Component implements OnInit, OnDestroy {
         responsedata: documentData,
       })
       .subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (error) => {
-          console.error('Error al insertar respuestas', error);
-        },
+        next: (response) => {},
+        error: (error) => {},
       });
   }
 
@@ -212,7 +192,6 @@ export class Form1Component implements OnInit, OnDestroy {
     document.body.appendChild(anchor);
     anchor.click();
     document.body.removeChild(anchor);
-    console.log('Documento generado con éxito');
 
     const fileInput = document.getElementById('logoInput') as HTMLInputElement;
     if (fileInput) {
@@ -254,7 +233,49 @@ export class Form1Component implements OnInit, OnDestroy {
     return fieldName.toLowerCase().includes('fecha');
   }
 
-  isCityField(fieldName: string): boolean {
+  isProvinceField(fieldName: string): boolean {
     return fieldName.toLowerCase().includes('provincia');
+  }
+
+  getCantones(): any[] {
+    const selectedProvince = this.formGroup?.get('Provincia')?.value;
+    if (selectedProvince) {
+      const provincia = this.provincias.find(
+        (provincia) => provincia.provincia === selectedProvince
+      );
+      if (
+        provincia &&
+        provincia.cantones &&
+        Object.keys(provincia.cantones).length > 0
+      ) {
+        const cantones: any[] = Object.values(provincia.cantones);
+        return cantones;
+      }
+    }
+    return [];
+  }
+
+  getAllCantones(): string[] {
+    let allCantones: string[] = [];
+    this.provincias.forEach((provincia) => {
+      if (
+        provincia &&
+        provincia.cantones &&
+        Object.keys(provincia.cantones).length > 0
+      ) {
+        const cantones: any[] = Object.values(provincia.cantones);
+        const cantonNames: string[] = cantones.map((canton) => canton.canton);
+        allCantones.push(...cantonNames);
+      }
+    });
+    return allCantones;
+  }
+
+  isCantonField(fieldName: string): boolean {
+    return fieldName.toLowerCase().includes('cantón');
+  }
+
+  isCityField(fieldName: string): boolean {
+    return fieldName.toLowerCase().includes('ciudad');
   }
 }

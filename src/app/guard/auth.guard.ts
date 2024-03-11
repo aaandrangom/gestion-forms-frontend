@@ -7,7 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/autenticacion/auth.service'; // Asegúrate de que la ruta a AuthService sea correcta
+import { AuthService } from '../services/autenticacion/auth.service';
 
 @Injectable({
   providedIn: 'root',

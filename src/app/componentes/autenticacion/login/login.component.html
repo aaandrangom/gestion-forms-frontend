@@ -13,7 +13,10 @@
           >
             {{ loginMessage.text }}
           </div>
-          <h2 class="text-center text-primary mb-4">¡Bienvenido de vuelta!</h2>
+          <h2 class="text-center text-primary mb-4">¡Bienvenido!</h2>
+          <h2 class="text-center text-primary mb-4">
+            Formularios para participación de compras públicas
+          </h2>
           <form
             [formGroup]="loginForm"
             (ngSubmit)="onSubmit()"
@@ -57,12 +60,6 @@
                   Por favor, ingresa tu contraseña.
                 </div>
               </div>
-            </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="rememberMe" />
-              <label class="form-check-label" for="rememberMe"
-                >Recordarme</label
-              >
             </div>
             <button
               type="submit"

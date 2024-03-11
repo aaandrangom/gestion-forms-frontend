@@ -4,13 +4,17 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/autenticacion/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -20,11 +24,18 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentUser && currentUser.token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`,
+          Authorization: `${currentUser.token}`,
         },
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 403) {
+          this.router.navigateByUrl('/error404');
+        }
+        return throwError(error);
+      })
+    );
   }
 }

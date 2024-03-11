@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from '../../../config/api.config';
 
@@ -8,6 +8,7 @@ import { API_CONFIG } from '../../../config/api.config';
 })
 export class FormulariosService {
   private apiUrl: string = `${API_CONFIG.production}/formulario`;
+  private currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
   constructor(private http: HttpClient) {}
 
   getForm(formDate: any): Observable<any> {
@@ -19,7 +20,15 @@ export class FormulariosService {
   }
 
   getFormsEnabled(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/administrador/habilitados`);
+    const token = this.currentUser.token || '';
+
+    const headers = new HttpHeaders({
+      Authorization: token,
+    });
+
+    return this.http.get<any[]>(`${this.apiUrl}/administrador/habilitados`, {
+      headers,
+    });
   }
 
   getFormsDisabled(): Observable<any[]> {
@@ -69,6 +78,12 @@ export class FormulariosService {
       description,
       status,
       cedula,
+    });
+  }
+
+  deleteForm(id: number, cedula: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/administrador/eliminar/${id}`, {
+      body: { cedula },
     });
   }
 }

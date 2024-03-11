@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormulariosService } from '../../../services/api/formularios/formularios.service';
+import { Router } from '@angular/router';
 declare var $: any;
 import 'datatables.net';
 
@@ -12,7 +13,10 @@ export class DeshabilitadosComponent implements OnInit {
   formularios: any[] = [];
   cedula: string | null = null;
   dataTable: any;
-  constructor(private formulariosService: FormulariosService) {}
+  constructor(
+    private formulariosService: FormulariosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getFormsDisabled();
@@ -26,10 +30,12 @@ export class DeshabilitadosComponent implements OnInit {
   }
 
   getFormsDisabled() {
+    if (this.dataTable) {
+      this.dataTable.destroy();
+    }
     this.formulariosService.getFormsDisabled().subscribe(
       (data) => {
         this.formularios = data;
-        // Esperar un breve período antes de inicializar DataTables
         setTimeout(() => {
           this.initDataTable();
         }, 100);
@@ -49,7 +55,14 @@ export class DeshabilitadosComponent implements OnInit {
   }
 
   editarFormulario(formulario: any) {
-    console.log('Editar formulario:', formulario);
+    if (formulario.formid !== undefined) {
+      this.router.navigate([
+        '/administrador/formulariosdeshabilitados/formulario',
+        formulario.formid,
+      ]);
+    } else {
+      console.error('ID de formulario no definido');
+    }
   }
 
   habilitarFormulario(formulario: any) {
@@ -58,7 +71,21 @@ export class DeshabilitadosComponent implements OnInit {
         .updateStatusToTrue(formulario.formid, this.cedula)
         .subscribe(
           (response) => {
-            console.log('Formulario habilitado:', response);
+            this.getFormsDisabled();
+          },
+          (error) => {
+            console.error('Error al habilitar el formulario:', error);
+          }
+        );
+    }
+  }
+
+  eliminarFormulario(formulario: any) {
+    if (this.cedula !== null) {
+      this.formulariosService
+        .deleteForm(formulario.formid, this.cedula)
+        .subscribe(
+          (response) => {
             this.getFormsDisabled();
           },
           (error) => {

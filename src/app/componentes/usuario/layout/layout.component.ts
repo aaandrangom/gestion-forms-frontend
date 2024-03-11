@@ -27,18 +27,14 @@ export class LayoutComponent {
     this.isFormOptionsVisible = !this.isFormOptionsVisible;
   }
 
-  getTemplateName() {
-    console.log(this.componentTracker.getCurrentComponent());
-  }
+  getTemplateName() {}
 
   getFormularios() {
     this.formulariosService.getAllForm().subscribe(
       (data) => {
         this.formularios = data;
       },
-      (error) => {
-        console.error('Error al obtener los formularios:', error);
-      }
+      (error) => {}
     );
   }
 

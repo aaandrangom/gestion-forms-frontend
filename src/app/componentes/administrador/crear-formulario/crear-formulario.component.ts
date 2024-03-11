@@ -44,14 +44,12 @@ export class CrearFormularioComponent implements OnInit {
                 type: 'success',
               };
               this.formGroup.reset();
-              console.log('Formulario creado: ', response);
             },
             (error) => {
               this.mensaje = {
                 text: 'Error en la creación del formulario',
                 type: 'danger',
               };
-              console.log('Formulario no creado erro: ', error);
             }
           );
       }
@@ -65,14 +63,14 @@ export class CrearFormularioComponent implements OnInit {
 
       if (this.cedula != null) {
         this.plantillasService.uploadFile(file, this.cedula).subscribe({
-          next: (response) => {
-            console.log(response);
-          },
-          error: (error) => {
-            console.error(error);
-          },
+          next: (response) => {},
+          error: (error) => {},
         });
       }
     }
+  }
+
+  cerrarMensaje() {
+    this.mensaje = null;
   }
 }

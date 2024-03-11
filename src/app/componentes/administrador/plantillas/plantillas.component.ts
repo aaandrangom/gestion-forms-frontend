@@ -35,14 +35,12 @@ export class PlantillasComponent implements OnInit, OnDestroy {
   getAllTemplates() {
     this.plantillasService.getAllPlantillas().subscribe(
       (data) => {
-        this.plantillas = data.plantillas; // Corregido: Acceder a data.plantillas en lugar de data
+        this.plantillas = data.plantillas;
         setTimeout(() => {
           this.initDataTable();
         }, 100);
       },
-      (error) => {
-        console.error('Error al obtener las plantillas:', error);
-      }
+      (error) => {}
     );
   }
 
@@ -62,7 +60,19 @@ export class PlantillasComponent implements OnInit, OnDestroy {
 
     this.plantillasService.updateFile(file, nombreArchivoActual).subscribe(
       (data) => {
-        console.log('Archivo subido exitosamente:', data);
+        this.plantillasMessage = {
+          text: data.message,
+          type: 'success',
+        };
+        this.getAllTemplates();
+      },
+      (error) => {}
+    );
+  }
+
+  eliminarPlantilla(plantilla: any) {
+    this.plantillasService.deleteFile(plantilla).subscribe(
+      (data) => {
         this.plantillasMessage = {
           text: data.message,
           type: 'success',
@@ -70,13 +80,12 @@ export class PlantillasComponent implements OnInit, OnDestroy {
         this.getAllTemplates();
       },
       (error) => {
-        console.error('Error al subir el archivo:', error);
+        this.plantillasMessage = {
+          text: error.error.error,
+          type: 'danger',
+        };
       }
     );
-  }
-
-  eliminarPlantilla(plantilla: any) {
-    console.log(plantilla);
   }
 
   cerrarMensaje() {

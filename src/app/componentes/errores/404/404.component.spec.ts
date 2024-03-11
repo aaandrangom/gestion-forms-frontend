@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditarFormComponent } from './editar-form.component';
+import { 404Component } from './404.component';
 
-describe('EditarFormComponent', () => {
-  let component: EditarFormComponent;
-  let fixture: ComponentFixture<EditarFormComponent>;
+describe('404Component', () => {
+  let component: 404Component;
+  let fixture: ComponentFixture<404Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditarFormComponent]
+      declarations: [404Component]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(EditarFormComponent);
+    fixture = TestBed.createComponent(404Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

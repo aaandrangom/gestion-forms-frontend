@@ -41,7 +41,6 @@ export class RecuperarContraseniaComponent implements OnInit {
     );
   }
 
-  // Función de validación personalizada para comparar contraseñas
   passwordMatchValidator: ValidatorFn = (
     control: AbstractControl
   ): ValidationErrors | null => {
@@ -55,7 +54,6 @@ export class RecuperarContraseniaComponent implements OnInit {
       : null;
   };
 
-  // Convenience getter for easy access to form fields
   get f() {
     return this.resetForm.controls;
   }
@@ -63,25 +61,19 @@ export class RecuperarContraseniaComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // Stop here if form is invalid
     if (this.resetForm.invalid) {
       return;
     }
 
-    // Show loading spinner
     this.loading = true;
 
-    // Prepare data for API call
-    console.log(this.token);
     const passwordData = {
       token: this.token,
       newPassword: this.resetForm.value.newPassword,
     };
 
-    // Call the resetPassword method of the ApiService
     this.apiService.resetPassword(passwordData).subscribe(
       (data) => {
-        console.log('data rp:', data);
         this.resetForm.reset();
         alert(
           'Contraseña restablecida exitosamente. Por favor, inicie sesión con su nueva contraseña.'
@@ -89,7 +81,6 @@ export class RecuperarContraseniaComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       (error) => {
-        console.log(error);
         this.error = error;
         this.loading = false;
       }

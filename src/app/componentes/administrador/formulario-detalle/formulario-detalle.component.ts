@@ -11,7 +11,7 @@ interface Campo {
   nombreLabel: string;
   tipo: string;
   validaciones?: any;
-  valor: string; // Agregar la propiedad 'valor' al tipo Campo si es necesario
+  valor: string;
 }
 
 interface Formulario {
@@ -64,8 +64,6 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
     this.formatoValue = this.formatoCheck ? campo.validaciones.formato : '';
     this.esEnteroCheck =
       campo.validaciones && campo.validaciones.esEntero != undefined;
-
-    console.log(campo);
   }
 
   ngOnInit(): void {
@@ -129,7 +127,7 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
                 nombreLabel: campoEncontrado ? campoEncontrado.nombreLabel : '',
                 tipo: campoEncontrado ? campoEncontrado.tipo : '',
                 validaciones: campoEncontrado
-                  ? this.obtenerValidaciones(campoEncontrado)
+                  ? this.obtenerValidaciones(campoEncontrado)[0]
                   : '',
               };
             }
@@ -142,8 +140,10 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
     );
   }
 
-  obtenerValidaciones(campo: Campo): any {
-    return campo.validaciones ? campo.validaciones : {};
+  obtenerValidaciones(campo: Campo): [any, string] {
+    const validaciones = campo.validaciones ? campo.validaciones : {};
+    const jsonString = JSON.stringify(validaciones);
+    return [validaciones, jsonString];
   }
 
   editarCampo(campo: Campo) {
@@ -154,7 +154,6 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
   }
 
   eliminarCampo(campo: Campo) {
-    console.log('Eliminando campo:', campo);
     const index = this.campos.indexOf(campo);
 
     if (index !== -1) {
@@ -215,7 +214,6 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
             this.formulario.description = formularioConCambios.description;
           },
           (error) => {
-            console.error('Error al actualizar el formulario:', error);
             this.mensaje = {
               text: 'No se actualizó correctamente',
               type: 'danger',
@@ -274,8 +272,6 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
 
     this.camposService.addNewFormulario(nuevoCampoJSON).subscribe(
       (response) => {
-        console.log('Campo añadido correctamente:', response);
-
         this.closeModal();
       },
       (error) => {
@@ -286,11 +282,9 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
 
   guardarCampoEditado() {
     if (!this.campoEditado) {
-      console.error('No se ha seleccionado ningún campo para editar.');
       return;
     }
 
-    // Obtener los elementos del DOM
     const nombreCampoElement = document.getElementById(
       'campoNombre'
     ) as HTMLInputElement | null;
@@ -301,13 +295,10 @@ export class FormularioDetalleComponent implements OnInit, AfterViewInit {
       'campoTipo'
     ) as HTMLSelectElement | null;
 
-    // Verificar si los elementos existen
     if (!nombreCampoElement || !nombreLabelElement || !tipoElement) {
-      console.error('Alguno de los elementos no se encontró en el DOM.');
       return;
     }
 
-    // Obtener los valores de los elementos usando el operador de navegación segura
     const nombreCampo = nombreCampoElement.value;
     const nombreLabel = nombreLabelElement.value;
     const tipo = tipoElement.value;

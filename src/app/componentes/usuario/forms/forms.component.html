@@ -26,21 +26,54 @@
                   >
                     {{ fieldValue }}
                   </label>
-                  <div *ngIf="isCityField(fieldValue)">
+                  <div *ngIf="isProvinceField(fieldValue)">
                     <select [formControlName]="fieldValue" class="form-control">
                       <option value="" disabled selected>
                         Selecciona una ciudad
                       </option>
                       <option
-                        *ngFor="let ciudad of ciudadesEcuador | keyvalue"
+                        *ngFor="let ciudad of provincias | keyvalue"
                         [value]="ciudad.value.provincia"
                       >
                         {{ ciudad.value.provincia }}
                       </option>
                     </select>
                   </div>
+
+                  <div *ngIf="isCantonField(fieldValue)">
+                    <select [formControlName]="fieldValue" class="form-control">
+                      <option value="" disabled selected>
+                        Selecciona un cantón
+                      </option>
+                      <option
+                        *ngFor="let canton of getCantones()"
+                        [value]="canton.canton"
+                      >
+                        {{ canton.canton }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div *ngIf="isCityField(fieldValue)">
+                    <select [formControlName]="fieldValue" class="form-control">
+                      <option value="" disabled selected>
+                        Selecciona una ciudad
+                      </option>
+                      <option
+                        *ngFor="let canton of getAllCantones()"
+                        [value]="canton"
+                      >
+                        {{ canton }}
+                      </option>
+                    </select>
+                  </div>
+
                   <input
-                    *ngIf="!isCityField(fieldValue)"
+                    *ngIf="
+                      !isProvinceField(fieldValue) &&
+                      !isCantonField(fieldValue) &&
+                      !isCityField(fieldValue)
+                    "
                     [type]="isDateField(fieldValue) ? 'date' : 'text'"
                     [formControlName]="fieldValue"
                     class="form-control"

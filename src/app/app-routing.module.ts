@@ -15,6 +15,8 @@ import { ActividadesComponent } from './componentes/administrador/actividades/ac
 import { PlantillasComponent } from './componentes/administrador/plantillas/plantillas.component';
 import { RecuperarContraseniaComponent } from './componentes/autenticacion/recuperar-contrasenia/recuperar-contrasenia.component';
 import { OlvidarContraseniaComponent } from './componentes/autenticacion/olvidar-contrasenia/olvidar-contrasenia.component';
+import { CuartroCeroCuatroComponent } from './componentes/errores/404/404.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -22,6 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'verificar', component: VerificarComponent },
   { path: 'olvidar-contraseña', component: OlvidarContraseniaComponent },
+  { path: 'error404', component: CuartroCeroCuatroComponent }, // Cambiado de 'error404' a '404'
   { path: 'recuperar-contraseña', component: RecuperarContraseniaComponent },
   {
     path: 'principal',
@@ -52,6 +55,10 @@ const routes: Routes = [
         component: DeshabilitadosComponent,
       },
       {
+        path: 'formulariosdeshabilitados/formulario/:id',
+        component: FormularioDetalleComponent,
+      },
+      {
         path: 'plantillas',
         component: PlantillasComponent,
       },
@@ -65,6 +72,8 @@ const routes: Routes = [
       },
     ],
   },
+  // Ruta comodín para redirigir todas las rutas no coincidentes a la página de error 404
+  { path: '**', redirectTo: '/error404' }, // Cambiado de '/404' a '/error404'
 ];
 
 @NgModule({

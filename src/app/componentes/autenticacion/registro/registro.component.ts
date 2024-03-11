@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent {
   registroForm: FormGroup;
-  mensajeRegistro: string = '';
+  mensaje: { text: string; type: string } | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,14 +34,23 @@ export class RegistroComponent {
 
     this.apiService.registerUser(userData).subscribe(
       (response) => {
-        console.log('Usuario registrado exitosamente', response);
-        this.mensajeRegistro = response.message;
+        this.mensaje = {
+          text: response.message,
+          type: 'success',
+        };
         localStorage.setItem('email', userData.email);
         this.router.navigate(['/verificar']);
       },
       (error) => {
-        console.error('Error al registrar usuario', error);
+        this.mensaje = {
+          text: error.error.message,
+          type: 'danger',
+        };
       }
     );
+  }
+
+  cerrarMensaje() {
+    this.mensaje = null;
   }
 }

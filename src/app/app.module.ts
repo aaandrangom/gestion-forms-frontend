@@ -18,7 +18,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SafeHtmlPipe } from './componentes/diseño/safeHtml/safe-html.pipe';
 import { FormulariosHabilitadosComponent } from './componentes/administrador/habilitados/habilitados.component';
 import { LayoutAdminComponent } from './componentes/administrador/layout-admin/layout-admin.component';
-import { EditarFormComponent } from './componentes/administrador/editar-form/editar-form.component';
 import { DeshabilitadosComponent } from './componentes/administrador/deshabilitados/deshabilitados.component';
 import { FormularioDetalleComponent } from './componentes/administrador/formulario-detalle/formulario-detalle.component';
 import { EdicionComponent } from './componentes/diseño/modal-editar/edicion/edicion.component';
@@ -27,6 +26,7 @@ import { ActividadesComponent } from './componentes/administrador/actividades/ac
 import { PlantillasComponent } from './componentes/administrador/plantillas/plantillas.component';
 import { RecuperarContraseniaComponent } from './componentes/autenticacion/recuperar-contrasenia/recuperar-contrasenia.component';
 import { OlvidarContraseniaComponent } from './componentes/autenticacion/olvidar-contrasenia/olvidar-contrasenia.component';
+import { CuartroCeroCuatroComponent } from './componentes/errores/404/404.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { OlvidarContraseniaComponent } from './componentes/autenticacion/olvidar
     SafeHtmlPipe,
     LayoutAdminComponent,
     FormulariosHabilitadosComponent,
-    EditarFormComponent,
     DeshabilitadosComponent,
     FormularioDetalleComponent,
     EdicionComponent,
@@ -51,6 +50,7 @@ import { OlvidarContraseniaComponent } from './componentes/autenticacion/olvidar
     PlantillasComponent,
     RecuperarContraseniaComponent,
     OlvidarContraseniaComponent,
+    CuartroCeroCuatroComponent,
   ],
   imports: [
     BrowserModule,

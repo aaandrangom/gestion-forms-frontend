@@ -1,10 +1,20 @@
 <div
-  class="d-flex align-items-center justify-content-center min-vh-100 bg-light"
+  class="bg-light min-vh-100 d-flex flex-column align-items-center justify-content-center"
 >
-  <div class="form-group">
-    <label *ngIf="mensajeRegistro" class="text-success">{{
-      mensajeRegistro
-    }}</label>
+  <div
+    *ngIf="mensaje"
+    class="alert alert-{{
+      mensaje.type
+    }} d-flex justify-content-between align-items-center"
+    role="alert"
+  >
+    <span>{{ mensaje.text }}</span>
+    <button
+      type="button"
+      class="btn-close btn-close-custom"
+      aria-label="Cerrar"
+      (click)="cerrarMensaje()"
+    ></button>
   </div>
   <div class="w-25 w-md-50 px-4 py-5 bg-white rounded-3 shadow-lg">
     <h2 class="text-center text-2xl text-secondary font-weight-bold mb-4">
