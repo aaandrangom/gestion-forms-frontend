@@ -12,7 +12,7 @@ import { API_CONFIG } from '../../../config/api.config';
   providedIn: 'root',
 })
 export class Formulario1Service {
-  private apiUrl: string = `${API_CONFIG.development}/documento`;
+  private apiUrl: string = `${API_CONFIG.production}/documento`;
 
   constructor(private http: HttpClient) {}
 
